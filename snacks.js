@@ -4,6 +4,7 @@ function getInitials(nomeCompleto) {
 }
 
 function createSlug(str) {
+    if (!str) throw new Error("Titolo non valido")
     return str.toLowerCase().replaceAll(" ", "-")
 }
 
@@ -17,8 +18,8 @@ function average(numbers) {
 }
 
 function isPalindrome(str) {
-    const reversedStr = str.split("").reverse().join("")
-    return reversedStr === str
+    const reversedStr = str.trim().split("").reverse().join("")
+    return reversedStr === str.trim()
 }
 
 
