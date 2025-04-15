@@ -4,10 +4,13 @@ function getInitials(nomeCompleto) {
 }
 
 function createSlug(str) {
-    return str.toLowerCase()
+    return str.toLowerCase().replaceAll(" ", "-")
 }
 
 function average(numbers) {
+    numbers.forEach(num => {
+        if (isNaN(num)) throw new Error("Accetta solo numeri")
+    })
     let sum = 0
     numbers.forEach(num => sum += num)
     return sum / numbers.length
