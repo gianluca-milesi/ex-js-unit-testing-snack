@@ -22,5 +22,17 @@ function isPalindrome(str) {
     return reversedStr === str.trim()
 }
 
+function findPostById(posts, id) {
+    if (isNaN(id)) throw new Error(`${id} non è un id`)
+    posts.forEach(p => {
+        if (p.id === undefined ||
+            p.title === undefined ||
+            p.slug === undefined) {
+            throw new Error("Il formato non è valido")
+        }
+    })
+    return posts.find(p => p.id === id) || null
+}
 
-module.exports = { getInitials, createSlug, average, isPalindrome }
+
+module.exports = { getInitials, createSlug, average, isPalindrome, findPostById }
