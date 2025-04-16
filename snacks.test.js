@@ -58,6 +58,12 @@ describe("Operazioni su Array", () => {
         removePost(posts, 2)
         expect(posts).toHaveLength(1)
     })
+
+    //Snack 9 (Bonus)
+    test("Se si tenta di aggiungere un post con un id o uno slug già esistente, la funzione addPost deve lanciare un errore.", () => {
+        expect(() => addPost(posts, { id: 1, title: "New Post", slug: "new post" })).toThrow("id già esistente")
+        expect(() => addPost(posts, { id: 5, title: "Jest", slug: "testing" })).toThrow("slug già esistente")
+    })
 })
 
 

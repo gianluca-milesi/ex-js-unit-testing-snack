@@ -35,6 +35,10 @@ function findPostById(posts, id) {
 }
 
 function addPost(posts, newPost) {
+    const ids = posts.map(p => p.id)
+    if (ids.includes(newPost.id)) throw new Error("id già esistente")
+    const slugs = posts.map(p => p.slug)
+    if (slugs.includes(newPost.slug)) throw new Error("slug già esistente")
     posts.push(newPost)
 }
 
