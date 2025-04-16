@@ -17,6 +17,21 @@ describe("Manipolazione di Stringhe", () => {
     })
 })
 
+let posts
+beforeEach(() => {
+    posts = [
+        {
+            id: 1,
+            title: "Jest",
+            slug: "testing"
+        },
+        {
+            id: 2,
+            title: "Javascript",
+            slug: "arrays"
+        }
+    ]
+})
 
 describe("Operazioni su Array", () => {
     //Snack 3
@@ -26,22 +41,6 @@ describe("Operazioni su Array", () => {
     })
 
     //Snack 7
-    let posts
-    beforeEach(() => {
-        posts = [
-            {
-                id: 1,
-                title: "Jest",
-                slug: "testing"
-            },
-            {
-                id: 2,
-                title: "Javascript",
-                slug: "arrays"
-            }
-        ]
-    })
-
     test("La funzione findPostById restituisce il post corretto dato l’array di post e l’id", () => {
         expect(findPostById(posts, 2)).toEqual({ id: 2, title: "Javascript", slug: "arrays" })
         expect(findPostById(posts, 10)).toBe(null)
@@ -82,5 +81,12 @@ describe("Generazione di Slug", () => {
     test("La funzione createSlug lancia un errore se il titolo è vuoto o non valido.", () => {
         expect(() => createSlug("")).toThrow("Titolo non valido")
         expect(() => createSlug(null)).toThrow("Titolo non valido")
+    })
+
+    //Snack 10 (Bonus)
+    test("Se viene passato un array di post come secondo argomento, la funzione createSlug incrementa di 1 se lo slug esiste già.", () => {
+        expect(createSlug("Testing", posts)).toBe("testing-1")
+        addPost(posts, { id: 3, title: "React", slug: createSlug("Testing", posts) })
+        expect(posts[posts.length - 1].slug).toBe("testing-1")
     })
 })
